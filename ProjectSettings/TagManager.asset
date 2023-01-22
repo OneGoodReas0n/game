@@ -16,7 +16,7 @@ TagManager:
   - Player
   - 1-Layer Objects
   - 2-Layer Objects
-  - 3-Layer Objects
+  - Ground
   - 
   - 
   - 
@@ -38,24 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 2759038977
     locked: 0
   - name: GameObjects
     uniqueID: 3268371857
     locked: 0
+  - name: Foreground
+    uniqueID: 3519612519
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Camera
     uniqueID: 73596625
     locked: 0
   - name: Player
     uniqueID: 3844615471
-    locked: 0
-  - name: 1-Layer
-    uniqueID: 3957123813
-    locked: 0
-  - name: 2-Layer
-    uniqueID: 2644803131
     locked: 0

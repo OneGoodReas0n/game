@@ -300,7 +300,7 @@
 -r:"/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll"
--r:"/Users/illiakorobov/Documents/projects/game-dev/gamedev_wise2022_d/Test Mechanics/Library/PackageCache/com.unity.cinemachine@2.7.9/Runtime/ThirdParty/clipper_library.dll"
+-r:"/Users/illiakorobov/Documents/projects/game/Library/PackageCache/com.unity.cinemachine@2.7.9/Runtime/ThirdParty/clipper_library.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Cinemachine.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/com.unity.cinemachine.editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/PsdPlugin.ref.dll"
