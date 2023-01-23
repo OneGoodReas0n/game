@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/CharacterController.cs" />
-    <Compile Include="Assets/PlayerMovement.cs" />
+    <Compile Include="Assets/Scripts/SawRotate.cs" />
+    <Compile Include="Assets/Scripts/PlayerMovement.cs" />
+    <Compile Include="Assets/Scripts/DelayAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

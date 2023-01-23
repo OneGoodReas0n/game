@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Damagable
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,10 @@ TagManager:
   - Background
   - Camera
   - Player
-  - 1-Layer Objects
-  - 2-Layer Objects
+  - Damagable
+  - Walls
   - Ground
-  - 
+  - Ceiling
   - 
   - 
   - 
