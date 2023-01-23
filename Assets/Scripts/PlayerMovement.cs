@@ -2,29 +2,81 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [SerializeField] private Transform wallGrabPoint;
+    [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private Rigidbody2D rigidbody;
+
     public CharacterController controller;
     public Animator animator;
 
     float horizontalMove = 0f;
     public float runSpeed = 40f;
-    bool jump = false;
-    bool landed = false;
+    bool jump, isGrounded, canGrab, isGrabbing = false;
+    float gravityValue;
+    float wallJumpTime = .2f;
+    float wallJumpCounter = .2f;
 
+
+    private void Start()
+    {
+        gravityValue = rigidbody.gravityScale;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetKeyDown(KeyCode.Space) && landed)
+        if (wallJumpCounter <= 0)
         {
-            jump = true;
-            landed = false;
-            animator.SetBool("Jump", jump);
-            animator.SetBool("Landed", landed);
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !jump)
+            {
+                jump = true;
+                isGrounded = false;
+                animator.SetBool("Jump", jump);
+                animator.SetBool("Landed", isGrounded);
+
+            }
+
+            canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, .2f, whatIsWall);
+
+            isGrabbing = false;
+
+            if (canGrab && !isGrounded)
+            {
+                if ((transform.localScale.x == 2f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -2f && Input.GetAxisRaw("Horizontal") < 0))
+                {
+                    isGrabbing = true;
+                }
+            }
+
+            if (isGrabbing)
+            {
+                rigidbody.gravityScale = 0f;
+                rigidbody.velocity = Vector2.zero;
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    wallJumpCounter = wallJumpTime;
+                    rigidbody.gravityScale = gravityValue;
+                    rigidbody.velocity = new Vector2(-Input.GetAxisRaw("Horizontal") * horizontalMove, 20f);
+                    isGrabbing = false;
+                }
+
+            }
+            else
+            {
+                rigidbody.gravityScale = gravityValue;
+            }
         }
+        else
+        {
+            wallJumpCounter -= Time.deltaTime;
+        }
+        
     }
 
     private void FixedUpdate()
@@ -36,8 +88,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding()
     {
-        landed = true;
-        animator.SetBool("Landed", landed);
+        isGrounded = true;
+        animator.SetBool("Landed", isGrounded);
        
     }
 
@@ -51,14 +103,14 @@ public class PlayerMovement : MonoBehaviour
             //Destroy(gameObject);
         }
 
-        if (collision.gameObject.name.Contains("press_moves") && landed)
+        if (collision.gameObject.name.Contains("press_moves") && isGrounded)
         {
             animator.Play("Dead");
             Debug.Log("Dead");
             //Destroy(gameObject);
         }
 
-        if (collision.gameObject.name.Contains("press_static") && landed)
+        if (collision.gameObject.name.Contains("press_static") && isGrounded)
         {
             animator.Play("Dead");
             Debug.Log("Dead");
